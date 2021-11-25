@@ -13,7 +13,7 @@
       <el-row>
         <el-col :span="10">
           <img
-            src="../../../assets/public_images/tongzhi.jpeg"
+            src="../../../assets/public_images/tongzhi.png"
             alt=""
             width="40%"
             class="img3"
@@ -62,7 +62,8 @@ export default {
   margin: 10px 10px;
 }
 .img3{
-  padding-left: 150px;
+  padding-left: 200px;
+  margin-top: -30px;
 }
 .p1{
   padding-top:16px;

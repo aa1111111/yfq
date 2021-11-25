@@ -1,11 +1,12 @@
 <template>
   <div class="box">
+    <div class="title">
+      <h2>全员健康每日打卡</h2></div>
     <div class="img">
-      <!-- <img src="../../assets/public_images/DailyClock.jpg" alt=""/> -->
+      <img src="../../assets/public_images/Daily.jpg" alt=""/>
     </div>
     <div class="jz">
-      <div class="title">
-      <h2>全员健康每日打卡</h2></div>
+      
       <p class="zs">
         每天健康打卡报平安，请填写今日健康打卡。所有信息仅用于组织了解员工身体状况，不会泄露作他用。
       </p>
@@ -101,13 +102,12 @@ export default {
   /* color: #d6aac58c; */
 }
 .img {
-  text-align: right;
+  text-align: center;
 }
 .box img {
   height: 200px;
 }
 .jz {
-  padding-top: 20px;
   text-align: left;
   margin: 0 auto;
   width: 65%;
@@ -118,6 +118,7 @@ export default {
   color: dimgrey;
 }
 .title{
+  padding-top: 20px;
   text-align: center;
   padding-bottom:15px;
 }

@@ -124,6 +124,12 @@
         </el-table-column>
       </el-table>
     </div>
+    <div class="block">
+  <el-pagination
+    layout="prev, pager, next"
+    :total="50">
+  </el-pagination>
+</div>
   </div>
 </template>
 <script>
@@ -229,5 +235,10 @@ export default {
   padding: 10px 0;
 }
 .btnh :hover {
+}
+.block{
+  padding-top: 40px;
+  padding-bottom: 40px;
+  text-align: center;
 }
 </style>

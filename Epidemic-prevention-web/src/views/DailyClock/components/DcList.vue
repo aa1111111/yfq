@@ -179,6 +179,12 @@
     </el-table>
     <review-dialog ref="reviewDialog" @refresh="search(1)"></review-dialog>
   </div>
+  <div class="block">
+  <el-pagination
+    layout="prev, pager, next"
+    :total="50">
+  </el-pagination>
+</div>
   </div>
 </template>
 <script>
@@ -334,5 +340,10 @@ background-color: #ebcfe03a !important;
     padding: 10px 0;
   }
 .btnh :hover{
+}
+.block{
+  padding-top: 40px;
+  padding-bottom: 40px;
+  text-align: center;
 }
 </style>

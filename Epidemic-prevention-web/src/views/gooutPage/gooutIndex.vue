@@ -1,11 +1,14 @@
 <template>
   <div class="box">
+    <el-row>
+      <el-col :span="12">
     <div class="img">
-      <!-- <img src="../../assets/public_images/DailyClock.jpg" alt=""/> -->
+      <img src="../../assets/public_images/goout.jpeg" alt=""/>
     </div>
-    <div class="jz">
-      <h2 class="title">外出报备申请</h2>
-      
+      </el-col><el-col :span="12">
+      <h2 class="title">外出报备申请</h2></el-col>
+    </el-row>
+      <div class="jz">
       <p class="zs">申请人信息</p>
 
       <el-form ref="form" :model="form" label-position="top" label-width="80px">
@@ -91,13 +94,13 @@ export default {
   /* color: #d6aac58c; */
 }
 .img {
-  text-align: right;
+  text-align: center;
 }
 .box img {
   height: 200px;
 }
 .jz {
-  padding-top: 20px;
+  padding-top: 50px;
   text-align: left;
   margin: 0 auto;
   width: 65%;
@@ -108,7 +111,9 @@ export default {
   color: rgb(63, 59, 59);
 }
 .title{
-  text-align: center;
+  padding-top: 100px;
+  text-align: left;
+  margin-left: -70px;
   padding-bottom: 15px;
 }
 .btn{
