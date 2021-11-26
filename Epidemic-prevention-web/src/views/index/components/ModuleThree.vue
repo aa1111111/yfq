@@ -91,7 +91,7 @@ export default {
       this.$router.push({ path: "dcindex", query: { userType: this.userType } });
     },
     clickIn3() {
-      this.$router.push({ path: "dcindex", query: { userType: this.userType } });
+      this.$router.push({ path: "noticeIndex", query: { userType: this.userType } });
     },
   },
 };

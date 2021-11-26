@@ -92,7 +92,7 @@
         >
         </el-table-column>
         <el-table-column
-          prop="tel"
+          prop="content"
           label="申请内容"
           width="100"
           fixed
@@ -100,13 +100,13 @@
         >
         </el-table-column>
         <el-table-column
-          prop="patAddress"
+          prop="time"
           label="申请时间"
           fixed
           align="center"
         >
         </el-table-column>
-        <el-table-column prop="remark" label="审核状态" fixed align="center">
+        <el-table-column prop="status" label="审核状态" fixed align="center">
         </el-table-column>
         <el-table-column prop="remark" label="备注说明" fixed align="center">
         </el-table-column>
@@ -115,10 +115,15 @@
             <el-button @click="handleCheck(scope.row)" type="text" size="small"
               >查看</el-button
             >
-            <el-button type="text" size="small">编辑</el-button>
+            <el-button type="text" size="small" @click="handleModify(scope.row)">修改</el-button>
+            <el-button type="text" size="small"  @click="handleReview(scope.row)">审核</el-button>
           </template>
         </el-table-column>
       </el-table>
+      <check-dialog ref="checkDialog" @refresh="search(1)"></check-dialog>
+        <review-dialog ref="reviewDialog" @refresh="search(1)"></review-dialog>
+  <modify-dialog ref="modifyDialog" @refresh="search(1)"></modify-dialog>
+  <add-dialog  ref="addDialog" @refresh="search(1)"></add-dialog>
     </div>
     <div class="block">
   <el-pagination
@@ -129,39 +134,56 @@
   </div>
 </template>
 <script>
+import AddDialog from './addDialog.vue';
+import CheckDialog from './checkDialog.vue';
+import ModifyDialog from './ModifyDialog.vue';
+import reviewDialog from './reviewDialog.vue';
 export default {
-  components: {},
+  components:{
+    reviewDialog,
+    CheckDialog,
+    ModifyDialog,
+    AddDialog
+  },
   data() {
     return {
       tableData: [
         {
-          clockTime: "2021-09-27 11:13:33",
-          tel: "13435442668",
+          time: "2021-09-27 11:13:33",
+          content: "复工申请",
           patName: "王小虎",
-          patAddress: "上海市普陀区金沙江路 1518 弄",
+          status: "上海市普陀区金沙江路 1518 弄",
           remark: "健康",
         },
         {
-          clockTime: "2021-09-27 11:13:33",
-          tel: "562232333",
-          patName: "王小虎2",
-          patAddress: "上海市普陀区金沙江路 1518 弄",
+          time: "2021-10-27 11:13:33",
+          content: "复工申请",
+          patName: "王小虎",
+          status: "上海市普陀区金沙江路 1518 弄",
           remark: "健康",
         },
         {
-          clockTime: "2021-09-27 11:13:33",
-          tel: "12223465",
-          patName: "王小虎3",
-          patAddress: "上海市普陀区金沙江路 1518 弄",
+          time: "2021-09-27 11:13:33",
+          content: "复工申请",
+          patName: "王小虎",
+          status: "上海市普陀区金沙江路 1518 弄",
           remark: "健康",
         },
         {
-          clockTime: "2021-09-27 11:13:33",
-          tel: "1234567676",
-          patName: "王小虎4",
-          patAddress: "上海市普陀区金沙江路 1518 弄",
+          time: "2021-09-27 11:13:33",
+          content: "复工申请",
+          patName: "王小虎",
+          status: "上海市普陀区金沙江路 1518 弄",
           remark: "健康",
         },
+        {
+          time: "2021-09-27 11:13:33",
+          content: "复工申请",
+          patName: "王小虎",
+          status: "上海市普陀区金沙江路 1518 弄",
+          remark: "健康",
+        },
+        
       ],
       currentRow: null,
       searchQuery: {
@@ -175,6 +197,9 @@ export default {
     },
     handleReview(item) {
       this.$refs.reviewDialog.open(1, item);
+    },
+    handleModify(item) {
+      this.$refs.modifyDialog.open(1, item);
     },
     filterTag(value, row) {
       return row.tag === value;
@@ -194,7 +219,7 @@ export default {
       this.search();
     },
     addEmpType() {
-      console.log(1);
+      this.$refs.addDialog.open(1);
     },
     deleteEmpType() {
       console.log(2);

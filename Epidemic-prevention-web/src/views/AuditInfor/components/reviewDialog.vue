@@ -8,9 +8,9 @@
       class="minDialog"
     >
     <!-- :style="{'background-image':'url('+require('@/assets/public_images/bizhi.jpg')+')', backgroundSize:'600px 350px',backgroundPosition:'340px 90px', backgroundRepeat: 'no-repeat'}" -->
-      
+      <div v-show="this.manage==1">
       <el-form
-        v-show="this.manage==1"
+        
         ref="form"
         :model="form"
         label-width="120px"
@@ -51,8 +51,10 @@
           <el-button size="small" @click="handleClose"> 取消</el-button>
         </div>
       </div>
+    </div>
+      <div v-show="this.manage==2">
       <el-form
-        v-show="this.manage==2"
+        
         ref="form2"
         :model="form2"
         label-width="120px"
@@ -87,11 +89,12 @@
       </el-form>
       <div slot="footer" class="dialog-footer" style="text-align: center">
         <div>
-          <el-button class="btn1" type="primary" size="small" @click="handleAdd2">
+          <el-button class="btn1" type="primary" size="small" @click="handleAdd">
             保存</el-button
           >
-          <el-button size="small" @click="handleClose2"> 取消</el-button>
+          <el-button size="small" @click="handleClose"> 取消</el-button>
         </div>
+      </div>
       </div>
     </el-dialog>
   </div>
@@ -122,10 +125,8 @@ export default {
   methods: {
     open(item) {
       this.id = item.id;
-      this.form.branchCode = item.shBranch;
-      this.form.branchCode2 = item.shBranch2;
+      
       this.dialogFormVisible = true;
-      this.dialogFormVisible2 = true;
     },
     handleAdd() {
       this.$refs["form"].validate((valid) => {
@@ -156,35 +157,6 @@ export default {
       this.id = "";
     },
   },
-    handleAdd2() {
-      this.$refs["form2"].validate((valid) => {
-        if (valid) {
-          let data = {
-            branchId: this.form.branchCode2,
-            reason: this.form.reason2,
-            id: this.id,
-            type: 1,
-          };
-
-          modShStatus(data).then((res) => {
-            if (res.code == 0) {
-              this.$message.success("审核完成");
-              this.$emit("refresh");
-              this.handleClose2();
-            }
-          });
-        }
-      });
-    },
-    handleClose2() {
-      if (this.$refs["form2"]) {
-        this.$refs["form2"].resetFields();
-      }
-      this.dialogFormVisible2 = false;
-      this.form2 = { reason2: "", branchCode2: "" };
-      this.id = "";
-    },
-    
   mounted() {
     this.manage = this.$route.query.manage;
   },

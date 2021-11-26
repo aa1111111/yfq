@@ -113,10 +113,13 @@
             <el-button @click="handleCheck(scope.row)" type="text" size="small"
               >查看</el-button
             >
-            <el-button type="text" size="small">编辑</el-button>
+            <el-button type="text" size="small" @click="handleModify(scope.row)">修改</el-button>
           </template>
         </el-table-column>
       </el-table>
+      <check-dialog ref="checkDialog" @refresh="search(1)"></check-dialog>
+    <modify-dialog ref="modifyDialog" @refresh="search(1)"></modify-dialog>
+    <add-dialog  ref="addDialog" @refresh="search(1)"></add-dialog>
     </div>
     <div class="block">
   <el-pagination
@@ -127,8 +130,15 @@
   </div>
 </template>
 <script>
+import AddDialog from './addDialog.vue';
+import CheckDialog from './checkDialog.vue';
+import ModifyDialog from './ModifyDialog.vue';
 export default {
-  components: {},
+  components:{
+    CheckDialog,
+    ModifyDialog,
+    AddDialog
+  },
   data() {
     return {
       tableData: [
@@ -171,6 +181,9 @@ export default {
     handleCheck(item) {
       this.$refs.checkDialog.open(1, item);
     },
+    handleModify(item) {
+      this.$refs.modifyDialog.open(1, item);
+    },
     handleReview(item) {
       this.$refs.reviewDialog.open(1, item);
     },
@@ -192,7 +205,7 @@ export default {
       this.search();
     },
     addEmpType() {
-      console.log(1);
+      this.$refs.addDialog.open(1);
     },
     deleteEmpType() {
       console.log(2);

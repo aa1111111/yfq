@@ -166,6 +166,19 @@ export const constantRoutes = [
         }
       ]
     },
+    {
+      path: "/",
+      redirect: "/ReturnPage/returnIndex",
+      component: Layout,
+      children: [
+        {
+          path: "/returnIndex",
+          name: "returnIndex",
+          component: () => import("@/views/ReturnPage/returnIndex"),
+          meta: { title: "复工申请" }
+        }
+      ]
+    },
   ];
   const createRouter = () =>
   new Router({

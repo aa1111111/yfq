@@ -97,25 +97,25 @@ export default {
       this.$router.push({ path: 'rtindex', query: { userType: this.userType} })
     },
     onPush6(){
-      this.$router.push({ path: 'returnApplyIndex', query: { userType: this.userType} })
+      this.$router.push({ path: 'returnApplyIndex', query: { userType: this.userType,manage:1,view:1} })
     },
     onPush7(){
-      this.$router.push({ path: 'goReportIndex', query: { userType: this.userType} })
+      this.$router.push({ path: 'goReportIndex', query: { userType: this.userType,manage:2,view:2} })
     },
     onPush8(){
-      this.$router.push({ path: 'dcindex', query: { userType: this.userType} })
+      this.$router.push({ path: 'dcindex', query: { userType: this.userType,view:4} })
     },
     onPush9(){
       this.$router.push({ path: 'noticeIndex', query: { userType: this.userType} })
     },
     onPush10(){
-      this.$router.push({ path: 'hisJouIndex', query: { userType: this.userType} })
+      this.$router.push({ path: 'hisJouIndex', query: { userType: this.userType,view:3} })
     },
     onPushB(){
       this.$router.push({ path: 'identityIndex', query: { userType: this.userType} })
     },
     onPushD(){
-      this.$router.push({ path: 'hisJouIndex', query: { userType: this.userType} })
+      this.$router.push({ path: 'returnIndex', query: { userType: this.userType} })
     },
     onPushE(){
       this.$router.push({ path: 'gooutIndex', query: { userType: this.userType} })

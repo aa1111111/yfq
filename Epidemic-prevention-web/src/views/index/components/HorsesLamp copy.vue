@@ -55,20 +55,20 @@ export default {
     go() {
       this.$router.push({
         path: "gooutIndex",
-        query: { userType: this.userType },
+        query: { userType: this.userType,view:2 },
       });
     },
 
     his() {
       this.$router.push({
         path: "userDailyIndex",
-        query: { userType: this.userType },
+        query: { userType: this.userType,view:3 },
       });
     },
     rep() {
       this.$router.push({
         path: "gooutIndex",
-        query: { userType: this.userType },
+        query: { userType: this.userType,view:1 },
       });
     },
     imgLoad() {

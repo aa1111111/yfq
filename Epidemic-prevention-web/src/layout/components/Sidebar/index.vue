@@ -79,7 +79,9 @@ export default {
         width:80%;
         height:100%; */
 }
+/* .bar{z-index:999;} */
 .suojin {
+  
 }
 .search {
   float: left;

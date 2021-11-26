@@ -1,56 +1,100 @@
 <template>
   <div>
-    <el-dialog 
-    title="查看"
+    <el-dialog
+      title="查看详情"
       width="600px"
       :visible.sync="dialogFormVisible"
       :before-close="handleClose"
       class="minDialog"
     >
-    <!-- :style="{'background-image':'url('+require('@/assets/public_images/bizhi.jpg')+')', backgroundSize:'600px 350px',backgroundPosition:'340px 90px', backgroundRepeat: 'no-repeat'}" -->
-      
-      <el-form
-
-        ref="form"
-        :model="form"
-        label-width="120px"
-        label-position="left"
-        :rules="rules"
-      >
-        <el-form-item label="审核是否通过:" prop="branchCode">
-          <el-select
-            filterable
-            clearable
-            size="small"
-            v-model="form.branchCode"
-          >
-            <el-option
-              v-for="item in branchList"
-              :key="item.value"
-              :label="item.shName"
-              :value="item.shId"
-            />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="审核不通过原因:" prop="reason">
-          <el-input
-            type="textarea"
-            :autosize="{ minRows: 5, maxRows: 8 }"
-            placeholder="请输入内容"
-            style="width: 90%"
-            v-model="form.reason"
-          >
-          </el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer" style="text-align: center">
-        <div>
-          <el-button class="btn1" type="primary" size="small" @click="handleAdd">
-            保存</el-button
-          >
-          <el-button size="small" @click="handleClose"> 取消</el-button>
-        </div>
+      <!-- :style="{'background-image':'url('+require('@/assets/public_images/bizhi.jpg')+')', backgroundSize:'600px 350px',backgroundPosition:'340px 90px', backgroundRepeat: 'no-repeat'}" -->
+      <div ref="form" class="form" v-show="this.view == 4">
+        <el-row class="relation-item"
+          ><el-col :span="16">姓名:</el-col
+          ><el-col :span="8">
+            <div style="float: right; padding-right: 20px">
+              {{ dataForm.name }}
+            </div></el-col
+          ></el-row
+        >
+        <el-row class="relation-item"
+          ><el-col :span="16">1.目前所在地区:</el-col
+          ><el-col :span="8">
+            <div style="float: right; padding-right: 20px">
+              {{ dataForm.p1 }}
+            </div></el-col
+          ></el-row
+        >
+        <el-row class="relation-item"
+          ><el-col :span="18">2.过去21天是否健康:</el-col
+          ><el-col :span="6">
+            <div style="float: right; padding-right: 20px">
+              {{ dataForm.p2 }}
+            </div></el-col
+          ></el-row
+        >
+        <el-row class="relation-item"
+          ><el-col :span="18">3.过去21天是否有涉及中高风险地区的旅居史:</el-col
+          ><el-col :span="6">
+            <div style="float: right; padding-right: 20px">
+              {{ dataForm.p3 }}
+            </div></el-col
+          ></el-row
+        >
+        <el-row class="relation-item"
+          ><el-col :span="18">4.过去21天是否有国外或港台的旅居史:</el-col
+          ><el-col :span="6">
+            <div style="float: right; padding-right: 20px">
+              {{ dataForm.p4 }}
+            </div></el-col
+          ></el-row
+        >
+        <el-row class="relation-item"
+          ><el-col :span="18"
+            >5.过去21天是否接触过新型冠状病毒确诊患者/无症状感染者/核酸检测为阳性者:</el-col
+          ><el-col :span="6">
+            <div style="float: right; padding-right: 20px">
+              {{ dataForm.p5 }}
+            </div></el-col
+          ></el-row
+        >
+        <el-row class="relation-item"
+          ><el-col :span="18"
+            >6.目前是否被所在街道/社区等部门要求居家/集中隔离:</el-col
+          ><el-col :span="6">
+            <div style="float: right; padding-right: 20px">
+              {{ dataForm.p6 }}
+            </div></el-col
+          ></el-row
+        >
+        <el-row class="relation-item"
+          ><el-col :span="18"
+            >7.目前是否是新型冠状病毒阳性（确诊）患者/正处于疑似待排查期间或曾是新型冠状病毒确诊患者/无症状感染者痊愈不足90天:</el-col
+          ><el-col :span="6">
+            <div style="float: right; padding-right: 20px">
+              {{ dataForm.p7 }}
+            </div></el-col
+          ></el-row
+        >
+        <el-row class="relation-item"
+          ><el-col :span="18"
+            >8.是否有病愈/隔离期满/涉及风险地区行程后，通过核酸检测:</el-col
+          ><el-col :span="6">
+            <div style="float: right; padding-right: 20px">
+              {{ dataForm.p8 }}
+            </div></el-col
+          ></el-row
+        >
+        <el-row class="relation-item"
+          ><el-col :span="16">9.是否已接种新冠疫苗:</el-col
+          ><el-col :span="8">
+            <div style="float: right; padding-right: 20px">
+              {{ dataForm.p9 }}
+            </div></el-col
+          ></el-row
+        >
       </div>
+      
     </el-dialog>
   </div>
 </template>
@@ -58,61 +102,46 @@
 export default {
   data() {
     return {
-      form: {
-        reason: "",
-        branchCode: "",
+      dataForm: {
+        name: "王小虎",
+        p1: "浙江省 宁波市 鄞州区",
+        p2: "健康",
+        p3: "否",
+        p4: "否",
+        p5: "否",
+        p6: "否",
+        p7: "否",
+        p8: "未检测",
+        p9: "已完全注射新冠疫苗",
       },
-      rules: {
-        branchCode: [
-          { required: true, message: "请选择是否审核通过", trigger: "blur" },
-        ],
-      },
+      view: null,
       dialogFormVisible: false,
-      branchList: [],
       id: "",
     };
+  },
+  mounted() {
+    this.view = this.$route.query.view;
   },
   methods: {
     open(item) {
       this.id = item.id;
-      this.form.branchCode = item.shBranch;
       this.dialogFormVisible = true;
     },
-    handleAdd() {
-      this.$refs["form"].validate((valid) => {
-        if (valid) {
-          let data = {
-            branchId: this.form.branchCode,
-            reason: this.form.reason,
-            id: this.id,
-            type: 1,
-          };
-
-          modShStatus(data).then((res) => {
-            if (res.code == 0) {
-              this.$message.success("审核完成");
-              this.$emit("refresh");
-              this.handleClose();
-            }
-          });
-        }
-      });
-    },
     handleClose() {
-      if (this.$refs["form"]) {
-        this.$refs["form"].resetFields();
-      }
       this.dialogFormVisible = false;
-      this.form = { reason: "", branchCode: "" };
       this.id = "";
     },
   },
 };
 </script>
 <style scoped>
-.btn1{
-  color: aliceblue;
-  background-color: #e2a0c9;
-    border-style:none;
+.form {
+  margin-top: -30px;
+}
+.Fform {
+  margin-top: -30px;
+}
+.relation-item {
+  padding-top: 20px;
 }
 </style>

@@ -72,7 +72,7 @@
     </div>
     <div class="tool">
       <el-row>
-        <el-button
+        <!-- <el-button
           @click="addEmpType"
           class="btnh"
           style="
@@ -84,7 +84,7 @@
         >
           <i class="el-icon-circle-plus-outline"></i>
           新增
-        </el-button>
+        </el-button> -->
 
         <el-button
           @click="deleteEmpType"
@@ -102,7 +102,7 @@
       highlight-current-row
       height="300"
       ref="table"
-      :header-cell-style="{ background: '#d6aac58c', color: 'white' }"
+      :header-cell-style="{ background: '#994a8e', color: 'white' }"
       style="width: 100% "
     >
       <el-table-column
@@ -117,7 +117,6 @@
       </el-table-column>
       
       <el-table-column prop="patName" label="姓名" width="100" fixed align="center"> </el-table-column>
-      <el-table-column prop="patTemperature" label="体温" width="100" fixed align="center"> </el-table-column>
       <el-table-column prop="clockTime" label="打卡时间" width="190" fixed align="center">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
@@ -172,12 +171,12 @@
           <el-button @click="handleCheck(scope.row)" type="text" size="small"
             >查看</el-button
           >
-          <el-button type="text" size="small">编辑</el-button>
-          <el-button type="text" size="small"  @click="handleReview(scope.row)">审核</el-button>
+          <el-button type="text" size="small" @click="handleReview(scope.row)">修改</el-button>
         </template>
       </el-table-column>
     </el-table>
-    <review-dialog ref="reviewDialog" @refresh="search(1)"></review-dialog>
+    <modify-dialog ref="modifyDialog" @refresh="search(1)"></modify-dialog>
+    <check-dialog ref="checkDialog" @refresh="search(1)"></check-dialog>
   </div>
   <div class="block">
   <el-pagination
@@ -188,13 +187,15 @@
   </div>
 </template>
 <script>
-import reviewDialog from './reviewDialog.vue';
+import CheckDialog from './checkDialog.vue';
+import ModifyDialog from './ModifyDialog.vue';
 export default {
   components:{
-    reviewDialog
+    CheckDialog,
+    ModifyDialog
   },
   data() {
-    return {
+  return {
       tableData: [
         {
           clockTime: "2021-09-27 11:13:33",
@@ -283,7 +284,7 @@ export default {
       this.$refs.checkDialog.open(1, item);
     },
     handleReview(item) {
-      this.$refs.reviewDialog.open(1, item);
+      this.$refs.modifyDialog.open(1, item);
     },
     filterTag(value, row) {
       return row.tag === value;
@@ -303,7 +304,7 @@ export default {
       this.search();
     },
     addEmpType() {
-      console.log(1)
+      this.$refs.modifyDialog.open(1);
     },
     deleteEmpType() {
       console.log(2)
